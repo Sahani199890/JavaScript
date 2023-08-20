@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Drum Kit</title>
+</head>
+<body>
+     <h1 id="title">DRUM KIT</h1>
+
+     <div class="buttons">
+        <button class="w drum">W</button>
+        <button class="a drum">A</button>
+        <button class="s drum">S</button>
+        <button class="d drum">D</button>
+        <button class="j drum">J</button>
+        <button class="k drum">K</button>
+        <button class="l drum">I</button>
+
+     </div>
+    <script >
+    var numberOfDrumButtons = document.querySelectorAll(".drum").length;
+    console.warn(numberOfDrumButtons);
+
+        for (var i = 0; i < numberOfDrumButtons; i++) {
+        
+          document.querySelectorAll(".drum")[i].addEventListener("click", function() {
+        
+            var buttonInnerHTML = this.innerHTML;
+        
+            makeSound(buttonInnerHTML);
+        
+            buttonAnimation(buttonInnerHTML);
+        
+          });
+        
+        }
+        
+        document.addEventListener("keypress", function(event) {
+        
+          makeSound(event.key);        
+          buttonAnimation(event.key);
+        
+        });
+        
+        
+        function makeSound(key) {
+        
+          switch (key) {
+            case "w":
+              var tom1 = new Audio("Tunes/mixkit-arcade-score-interface-217.wav");
+              tom1.play();
+              break;
+        
+            case "a":
+              var tom2 = new Audio("Tunes/mixkit-bad-joke-drums-2893.wav");
+              tom2.play();
+              break;
+        
+            case "s":
+              var tom3 = new Audio('Tunes/mixkit-flute-alert-2307.wav');
+              tom3.play();
+              break;
+        
+            case "d":
+              var tom4 = new Audio('Tunes/mixkit-guitar-stroke-down-slow-2339.wav');
+              tom4.play();
+              break;
+        
+            case "j":
+              var snare = new Audio('Tunes/mixkit-orchestral-violin-jingle-2280.wav');
+              snare.play();
+              break;
+        
+            case "k":
+              var crash = new Audio('Tunes/mixkit-happy-guitar-chords-2319.wav');
+              crash.play();
+              break;
+        
+            case "l":
+              var kick = new Audio('Tunes/mixkit-guitar-stroke-up-slow-2338.wav');
+              kick.play();
+              break;
+        
+        
+            default: console.log(key);
+        
+          }
+        }
+        
+        
+        function buttonAnimation(currentKey) {
+        
+          var activeButton = document.querySelector("." + currentKey);
+        
+          activeButton.classList.add("pressed");
+        
+          setTimeout(function() {
+            activeButton.classList.remove("pressed");
+          }, 100);
+        }</script>    
+</body>
+</html>
